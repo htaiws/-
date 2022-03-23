@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int findsub(char* src, char* s)
+{
+    char *ptr=src, *p=s;   
+    char *ptr2=src+strlen(src), *prev=NULL;   
+    int len=strlen(s), n=0;       
+    for(;*ptr;ptr++)   
+    {
+        if(ptr2-ptr<len)    
+            break;
+        for(prev=ptr;*prev==*p;prev++,p++)    
+        {
+            if(*(p+1)==0||*(p+1)==10)    
+            {
+                n++;    
+                p=s;    
+                break;
+            }
+        }
+    }
+    return n;
+}
+ 
+int main(void)
+{
+    char a[81],b[81];        
+    printf("Please input a sentence:\n"); 
+    fgets(a,81,stdin);
+    printf("Please input a word:\n"); 
+    fgets(b,81,stdin);
+    printf("找到:%d\n",findsub(a,b));
+    return 0; 
+}
